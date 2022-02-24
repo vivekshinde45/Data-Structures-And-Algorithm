@@ -2,7 +2,7 @@ https://leetcode.com/problems/reverse-vowels-of-a-string/
 
 
 
-=============== Brute Force =================
+=============== Brute Force =================                           1736ms
 class Solution {
     public String reverseVowels(String s) {
         int n = s.length();
@@ -47,7 +47,7 @@ class Solution {
 }
 
 
-==================Optimized====================   -> in terms of condition statements
+==================Optimized====================   -> in terms of condition statements             1671ms
 class Solution {
     public boolean isVowel(char[] arr, int idx){
         char ch = arr[idx];
@@ -86,5 +86,46 @@ class Solution {
             str += arr[idx];
         }
         return str;
+    }
+}
+
+
+================ Better Optimize in checks ==================                    2ms
+class Solution {
+    public boolean isVowel(char[] arr, int idx){
+        char ch = arr[idx];
+        if(ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u' ||
+           ch == 'A' || ch == 'E' || ch == 'I' || ch == 'O' || ch == 'U'){
+            return true;
+        }
+        return false;
+    }
+    
+    public void swap(char[] arr, int i, int j){
+        char temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+    
+    public String reverseVowels(String s) {
+        int n = s.length();
+        char[] arr = s.toCharArray();
+        int i = 0;
+        int j = n - 1;
+        while(i < j){
+            while(i < j && isVowel(arr, i) == false){
+                i++;
+            }
+            while(i < j && isVowel(arr, j) == false){
+                j--;
+            }
+            if(isVowel(arr, i) == true && isVowel(arr, j) == true){             // only because of this condition the code is run in 2ms
+                swap(arr, i, j);
+                i++;
+                j--;
+            }
+        }
+        
+        return new String(arr);
     }
 }
