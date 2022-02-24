@@ -1,4 +1,4 @@
-https://nados.io/question/transpose-of-matrix-with-dimension-m-x-n
+https://leetcode.com/problems/transpose-matrix/
 
 
 
