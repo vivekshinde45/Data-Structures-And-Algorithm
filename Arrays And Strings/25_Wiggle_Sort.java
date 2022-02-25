@@ -36,3 +36,39 @@ public class Solution {
         }
     }
 }
+
+
+=============== Optimized =================
+Time ->  0(n)
+Space -> 0(1)
+public class Solution {
+    /*
+     * @param nums: A list of integers
+     * @return: nothing
+     */
+
+    public void swap(int[] arr, int i, int j){
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+    public void wiggleSort(int[] arr) {
+        // write your code here
+        int n = arr.length;
+        for(int i = 0; i < n - 1; i++){
+            if(i % 2 == 0){
+                // even
+                if(arr[i + 1] < arr[i]){
+                    swap(arr, i, i + 1);
+                }
+            }
+            else{
+                // odd
+                if(arr[i + 1] > arr[i]){
+                    swap(arr, i, i + 1);
+                }
+            }
+        }
+    }
+}
