@@ -4,7 +4,7 @@ https://leetcode.com/problems/maximum-product-subarray/
 
 
 =====================BRUTE FORCE=====================
-Time  -> 0(n^2)
+Time  -> 0(n^3)
 Space -> 0(1)
 class Solution {
     public int maxProduct(int[] nums) {
