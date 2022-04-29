@@ -90,6 +90,8 @@ public class Main{
         int[] dist = new int[n];
         dist[0] = 0;
         Arrays.fill(dist, (int)1e9);
+        int edges = 0;
+        
         while(pq.size() > 0){
             pair rem = pq.poll();
             int par = rem.par;
@@ -100,13 +102,16 @@ public class Main{
             
             if(par != -1){
                 spt[par].add(new Edge(par, src, wsf));
+                edges++;
             }
             dist[src] = wsf;
             
             for(Edge e : graph[src]){
                 pq.add(new pair(src, e.v, wsf + e.wt));
             }
-            
+            if(edges == n - 1){
+                break;
+            }
         }
         printDist(dist);
         printSPT(spt);
