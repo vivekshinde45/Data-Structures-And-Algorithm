@@ -59,3 +59,39 @@ public class Main {
    }
 
 }
+
+
+
+
+
+
+
+---------------------------------------------------------- KAHN'S ALGO
+   public static void topoByKahnsAlgo(ArrayList<Edge>[] graph, int n){
+       int[] inDegree = new int[n];
+       for(int i = 0; i < n; i++){
+           ArrayList<Edge> adj = graph[i];
+           for(Edge e : adj){
+               inDegree[e.nbr]++;
+           }
+       }
+       for(int val : inDegree)System.out.print(val + " ");
+       System.out.println();
+       
+       Queue<Integer> q = new ArrayDeque<>();
+       for(int i = 0; i < n; i++){
+           if(inDegree[i] == 0){
+               q.add(i);
+           }
+       }
+       while(q.size() > 0){
+           int rem = q.remove();
+           System.out.println(rem);
+           for(Edge e : graph[rem]){
+               inDegree[e.nbr]--;
+               if(inDegree[e.nbr] == 0){
+                   q.add(e.nbr);
+               }
+           }
+       }
+   }
