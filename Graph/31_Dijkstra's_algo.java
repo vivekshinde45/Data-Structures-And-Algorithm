@@ -91,13 +91,14 @@ public class Main{
         dist[0] = 0;
         Arrays.fill(dist, (int)1e9);
         int edges = 0;
-        
+        int count = 0;
         while(pq.size() > 0){
             pair rem = pq.poll();
             int par = rem.par;
             int src = rem.src;
             int wsf = rem.wsf;
             
+            count ++;
             if(dist[src] != (int)1e9)continue;
             
             if(par != -1){
@@ -107,12 +108,14 @@ public class Main{
             dist[src] = wsf;
             
             for(Edge e : graph[src]){
-                pq.add(new pair(src, e.v, wsf + e.wt));
+                if(dist[e.v] == (int)1e9)
+                    pq.add(new pair(src, e.v, wsf + e.wt));
             }
             if(edges == n - 1){
                 break;
             }
         }
+        System.out.println(count);
         printDist(dist);
         printSPT(spt);
     }
